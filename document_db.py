@@ -1,10 +1,12 @@
+#
+#Class to interact with a document DB
+#
 import pymongo
 from pymongo import MongoClient
 
 class DocumentDB():
     def __init__(self, db_name, collection_name):
         #Connect to MongoDB - Note: Change connection string as needed
-        #client = MongoClient(port=27017)
         client = MongoClient('mongodb://localhost:27017/')
         #client = MongoClient('mongodb://data-science-0.strike.0638.mongodbdns.com:27017')
 

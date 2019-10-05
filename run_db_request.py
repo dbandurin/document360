@@ -1,3 +1,6 @@
+#UI block:
+# run requests to DB and show relevant documents
+#
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -36,7 +39,6 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
     html.Br(),
     dcc.Input(id="input_request", type="text", value="online",
         style={'width':'30%','display': 'inline-block'}),
-    html.Br(), 
     html.Hr(),
     html.H1('Results', style={'textAlign':'center', 'color': colors['text']}),
     html.Div([

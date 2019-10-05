@@ -1,3 +1,6 @@
+#
+#Main OCR block
+#
 import pytesseract
 
 def extract_text(img):
