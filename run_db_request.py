@@ -40,7 +40,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
     dcc.Input(id="input_request", type="text", value="online",
         style={'width':'30%','display': 'inline-block'}),
     html.Hr(),
-    html.H1('Results', style={'textAlign':'center', 'color': colors['text']}),
+    html.H2('Results', style={'textAlign':'left', 'color': colors['text']}),
     html.Div([
         html.H3(children='Documents found'),
         html.Table(id='my-table'),
@@ -50,8 +50,8 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
         style={'width':'25%','display': 'inline-block'}), 
     html.Div([
         html.H3('Original document'),
-        html.Img(id='my-image', style={'width':'80%','height':'80%'}),
-    ], style={'width':'50%','display': 'inline-block','float':'right'})
+        html.Img(id='my-image', style={'width':'65%','height':'65%'}),
+    ], style={'width':'60%','display': 'inline-block','float':'right'})
 ])
 
 @app.callback([Output('my-table', 'children'),
@@ -70,6 +70,7 @@ def table_update(request):
                             html.A(x, href=s3_client.generate_presigned_url('get_object', 
                             Params={'Bucket':'document360', 'Key':x}), target="_blank"))
         df['matching_score'] = df.score.round(3)
+        df['content_stripped'] = df['content'].apply(lambda x: x[:30])
         df_show = df[['document_name','matching_score']].iloc[:int(10)]
         dropdown_menu = [{'label': i, 'value': i} for i in df.file_name.values]
         text = u'{} documents found'.format(len(df))
